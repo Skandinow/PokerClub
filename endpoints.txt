@@ -1,0 +1,47 @@
+enum TableCondition {
+
+}
+
+enum PlayerCondition {
+    Passed, Waiting, Moving
+}
+
+enum Suit {
+    _, _, _, _
+}
+
+Card {
+    value: int
+    suit: Suit
+}
+
+Player {
+    name: String
+    (Nullable) hand: [Card, Card]
+    condition: PlayerCondition
+    passive_balance: int
+    active_balance: int
+    bank_bid: int
+    current_bid: int
+    (Nullable) win: int
+}
+
+RoomInfo {
+    step: int
+    condition: TableCondition
+    (Nullable) cards: [Card, ...]
+    players: [(Nullable) Player, ...]
+    bank: int
+    small_blind: int
+    blind_position: int
+}
+
+---
+
+GET
+/api/v0/rooms/{room_id}/step
+getRoomStep -> int
+
+GET
+/api/v0/rooms/{room_id}/info
+getRoomInfo -> RoomInfo

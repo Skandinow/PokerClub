@@ -1,4 +1,4 @@
-package com.svigel.pokerclub;
+package com.svigel.pokerclub.model;
 
 import jakarta.persistence.*;
 import lombok.Data;

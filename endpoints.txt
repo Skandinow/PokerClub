@@ -17,19 +17,21 @@ Card {
 
 Player {
     name: String
-    (Nullable) hand: [Card, Card]
+    (Nullable) hand: [Card, Card] int ____ in db
     condition: PlayerCondition
     passive_balance: int
     active_balance: int
     bank_bid: int
     current_bid: int
     (Nullable) win: int
+    (id in db)
+    (roomId in db)
 }
 
 RoomInfo {
     step: int
     condition: TableCondition
-    (Nullable) cards: [Card, ...]
+    (Nullable) cards: String, где одна карта - трехзначное число, сепаратор :
     players: [(Nullable) Player, ...]
     bank: int
     small_blind: int

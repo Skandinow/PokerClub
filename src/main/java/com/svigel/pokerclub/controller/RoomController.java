@@ -17,7 +17,12 @@ public class RoomController {
         this.roomService = roomService;
     }
 
-    @GetMapping("/room/{id}")
+    @GetMapping("/room/{id}/step")
+    public Long getRoomStep(@PathVariable Long id) {
+        return roomService.getRoom(id).getStep();
+    }
+
+    @GetMapping("/room/{id}/full")
     public RoomDTO getRoomInfo(@PathVariable Long id) {
         return RoomDTO.fromRoom(roomService.getRoom(id));
     }

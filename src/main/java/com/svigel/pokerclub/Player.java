@@ -1,4 +1,4 @@
-package model;
+package com.svigel.pokerclub;
 
 import jakarta.annotation.Nullable;
 import jakarta.persistence.*;

@@ -1,4 +1,4 @@
-package service;
+package com.svigel.pokerclub.service;
 
 import org.springframework.stereotype.Service;
 

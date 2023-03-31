@@ -1,6 +1,6 @@
-package repository;
+package com.svigel.pokerclub.repository;
 
-import model.Room;
+import com.svigel.pokerclub.Room;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 

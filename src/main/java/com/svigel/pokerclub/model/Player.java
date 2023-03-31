@@ -1,8 +1,9 @@
 package com.svigel.pokerclub.model;
 
-import jakarta.annotation.Nullable;
 import jakarta.persistence.*;
 import lombok.Data;
+import org.springframework.lang.Nullable;
+
 
 @Entity
 @Data
@@ -13,6 +14,8 @@ public class Player {
     private Long id;
 
     private String name;
+
+    @Nullable
     @ManyToOne
     @JoinColumn(name="room_id")
     private Room room;

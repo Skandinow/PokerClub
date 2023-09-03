@@ -4,6 +4,8 @@ import com.svigel.pokerclub.model.PokerUser;
 import com.svigel.pokerclub.repository.PokerUserRepository;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public class PokerUserService {
     private final PokerUserRepository pokerUserRepository;
@@ -12,11 +14,20 @@ public class PokerUserService {
         this.pokerUserRepository = pokerUserRepository;
     }
 
-    public static PokerUser findByUsername(String name) {
-        return PokerUserRepository.findByUsername(name);
+    public PokerUser findByUsernameAndPassword(String username, String password) {
+        return pokerUserRepository.findByUsernameAndPassword(username, password);
     }
 
-    public PokerUser findByUsernameAndPassword(String login, String password) {
-        return pokerUserRepository.findByUsernameAndPassword(login, password);
+    public PokerUser findByUsername(String name) {
+        return pokerUserRepository.findByUsername(name);
+    }
+
+    public List<PokerUser> findAll() {
+        return pokerUserRepository.findAll();
+    }
+
+    public PokerUser findById(Long id) {
+        return id == null ? null : pokerUserRepository.findById(id).orElse(null);
+
     }
 }

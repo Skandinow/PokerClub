@@ -1,4 +1,4 @@
-# hw10
+# PokerClub
 
 ## Project setup
 ```

@@ -16,7 +16,7 @@ public class UserEnterCredentials {
     private String login;
 
     @NotEmpty
-    @Size(min = 1, max = 60)
+    @Size(min = 1, max = 20)
     private String password;
 
 }

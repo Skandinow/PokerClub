@@ -1,0 +1,38 @@
+
+.form-3 label {
+    /* Size and position */
+    width: 100%;
+    float: left;
+    padding-top: 9px;
+
+    /* Styles */
+    color: #ddd;
+    font-size: 13px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    text-shadow: 0 1px 0 #000;
+    text-indent: 10px;
+    font-weight: 700;
+    cursor: pointer;
+}
+
+
+/* Gradient line */
+.form-3:after {
+    /* Size and position */
+    content: "";
+    height: 1px;
+    width: 33%;
+    position: absolute;
+    left: 50%;
+    top: 0;
+
+    /* Styles */
+    background: linear-gradient(left, transparent, #444, #8c0505, #444, transparent);
+}
+
+
+.no-pointerevents .form-3 p:nth-child(1):before {
+    display: none;
+}
+

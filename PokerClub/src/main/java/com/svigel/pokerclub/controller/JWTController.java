@@ -26,17 +26,17 @@ public class JWTController {
     }
 
     @InitBinder("pokerUser")
-    public void PokerUserBinder(WebDataBinder webDataBinder) {
+    public void PokerUserEnterBinder(WebDataBinder webDataBinder) {
         webDataBinder.addValidators(validator);
     }
 
 
     @PostMapping("jwt")
-    public String create(@RequestBody @Valid PokerUser userEnterCredentials, BindingResult bindingResult) {
+    public String create(@RequestBody @Valid PokerUser pokerUser, BindingResult bindingResult) {
         if (bindingResult.hasErrors()) {
             throw new ValidationException(bindingResult);
         }
-        PokerUser user = pokerUserService.findByUsernameAndPassword(userEnterCredentials.getUsername(), userEnterCredentials.getPassword());
+        PokerUser user = pokerUserService.findByUsernameAndPassword(pokerUser.getUsername(), pokerUser.getPassword());
         return jwtService.create(user);
     }
 

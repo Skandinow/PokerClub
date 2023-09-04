@@ -30,4 +30,8 @@ public class PokerUserService {
         return id == null ? null : pokerUserRepository.findById(id).orElse(null);
 
     }
+
+    public PokerUser savePokerUser(PokerUser user) {
+        return pokerUserRepository.save(user);
+    }
 }

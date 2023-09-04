@@ -12,7 +12,7 @@ import java.util.Collection;
 import java.util.List;
 
 @RestController
-public class PlayerController implements UserDetails {
+public class PlayerController {
     private final PlayerService playerService;
 
     @Autowired
@@ -25,40 +25,8 @@ public class PlayerController implements UserDetails {
         return playerService.findAll();
     }
 
-    @Override
-    public Collection<? extends GrantedAuthority> getAuthorities() {
-        return null;
-    }
 
-    @Override
-    public String getPassword() {
-        return null;
-    }
 
-    @Override
-    public String getUsername() {
-        return null;
-    }
-
-    @Override
-    public boolean isAccountNonExpired() {
-        return false;
-    }
-
-    @Override
-    public boolean isAccountNonLocked() {
-        return false;
-    }
-
-    @Override
-    public boolean isCredentialsNonExpired() {
-        return false;
-    }
-
-    @Override
-    public boolean isEnabled() {
-        return false;
-    }
 //    @PostMapping("/register")
 //    public Player register(String name, Integer passive) {
 //        return playerService.register(name, passive);

@@ -22,21 +22,31 @@ public class Player {
     private String name;
 
     @Getter
+    @OneToOne
+    @JoinColumn(name = "id", nullable = false)
     private Race race;
+
     @Getter
+    @Nullable
     private Integer balance;
     @Getter
+    @Nullable
     private Integer bid;
     @Nullable
     private Integer win;
+    @Nullable
+    private Integer chairPlace;
+
 
     @Getter
     @ManyToMany
     private List<Room> games;
-    @Nullable
-    private Integer chairPlace;
     @CreationTimestamp
     private Date creationTime;
+
+    public void setRace(Race race) {
+        this.race = race;
+    }
 
     @Nullable
     public Integer getWin() {

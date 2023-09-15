@@ -9,7 +9,7 @@ import org.springframework.stereotype.Repository;
 @Repository
 
 public interface PlayerRepository extends JpaRepository<Player, Long > {
-    @Modifying
-    @Query(value = "UPDATE public.player SET room_id=?2 where id=?1", nativeQuery = true)
-    void update(long playerId, long roomId, String roomName);
+
+    Player findByName(String name);
 }
+

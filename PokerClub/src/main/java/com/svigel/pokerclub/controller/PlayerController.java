@@ -1,23 +1,34 @@
 package com.svigel.pokerclub.controller;
 
+import com.svigel.pokerclub.exception.ValidationException;
 import com.svigel.pokerclub.model.Player;
 import com.svigel.pokerclub.service.PlayerService;
+import com.svigel.pokerclub.validator.PlayerCreateValidator;
+import jakarta.persistence.JoinColumn;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.core.GrantedAuthority;
-import org.springframework.security.core.userdetails.UserDetails;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.WebDataBinder;
+import org.springframework.web.bind.annotation.*;
 
-import java.util.Collection;
+import javax.validation.Valid;
 import java.util.List;
 
 @RestController
+@RequestMapping("api/1")
 public class PlayerController {
     private final PlayerService playerService;
+    private final PlayerCreateValidator playerCreateValidator;
+
+    @InitBinder("playerCreateValidator")
+    public void PlayerBinder(WebDataBinder webDataBinder) {
+        webDataBinder.addValidators(playerCreateValidator);
+    }
 
     @Autowired
-    PlayerController(PlayerService playerService) {
+    PlayerController(PlayerService playerService, PlayerCreateValidator playerCreateValidator) {
         this.playerService = playerService;
+        this.playerCreateValidator = playerCreateValidator;
+
     }
 
     @GetMapping("players")
@@ -27,9 +38,13 @@ public class PlayerController {
 
 
 
-//    @PostMapping("/register")
-//    public Player register(String name, Integer passive) {
-//        return playerService.register(name, passive);
-//    }
+    @PostMapping("/player")
+    public Player savePlayer(@RequestBody @Valid Player player, BindingResult bindingResult) {
+        if (bindingResult.hasErrors()) {
+            throw new ValidationException(bindingResult);
+        }
+
+        return playerService.savePlayer(player);
+    }
 
 }

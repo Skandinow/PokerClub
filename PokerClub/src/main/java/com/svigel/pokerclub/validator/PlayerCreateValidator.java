@@ -23,6 +23,9 @@ public class PlayerCreateValidator implements Validator {
     public void validate(Object target, Errors errors) {
         if (!errors.hasErrors()) {
             Player player = (Player) target;
+            if (playerService.findByNameAndRaceAndId(player.getName(), player.getRace(), player.getId()) != null) {
+                errors.reject("invalid-name-and-race", "You can't create two similar players");
+            }
         }
     }
 }

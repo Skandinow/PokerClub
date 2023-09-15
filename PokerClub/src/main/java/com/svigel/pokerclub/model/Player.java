@@ -19,11 +19,14 @@ public class Player {
     private Long id;
 
     @Getter
+    @ManyToOne
+    @JoinColumn(name = "poker_user_id", nullable = false)
+    private PokerUser user;
+
+    @Getter
     private String name;
 
     @Getter
-    @OneToOne
-    @JoinColumn(name = "id", nullable = false)
     private Race race;
 
     @Getter

@@ -2,6 +2,7 @@ package com.svigel.pokerclub.controller;
 
 import com.svigel.pokerclub.exception.ValidationException;
 import com.svigel.pokerclub.model.Player;
+import com.svigel.pokerclub.model.Race;
 import com.svigel.pokerclub.service.PlayerService;
 import com.svigel.pokerclub.validator.PlayerCreateValidator;
 import jakarta.persistence.JoinColumn;
@@ -38,13 +39,18 @@ public class PlayerController {
 
 
 
-    @PostMapping("/player")
+    @PostMapping("/player/save")
     public Player savePlayer(@RequestBody @Valid Player player, BindingResult bindingResult) {
         if (bindingResult.hasErrors()) {
             throw new ValidationException(bindingResult);
         }
 
         return playerService.savePlayer(player);
+    }
+
+    @GetMapping("/races")
+    public List<Race> getRaces() {
+        return List.of(Race.values());
     }
 
 }

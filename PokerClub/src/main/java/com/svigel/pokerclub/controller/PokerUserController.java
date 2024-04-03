@@ -25,7 +25,7 @@ public class PokerUserController {
         this.pokerUserRegisterValidator = pokerUserRegisterValidator;
     }
 
-    @InitBinder("pokerUserRegisterValidator")
+    @InitBinder("pokerUser")
     public void PokerUserRegisterBinder(WebDataBinder webDataBinder) {
         webDataBinder.addValidators(pokerUserRegisterValidator);
     }

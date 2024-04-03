@@ -2,31 +2,42 @@ package com.svigel.pokerclub.model;
 
 import jakarta.persistence.*;
 import lombok.Getter;
+import lombok.RequiredArgsConstructor;
 
+import javax.validation.constraints.NotEmpty;
 import java.util.List;
 
 @Getter
 @Entity
+@RequiredArgsConstructor
 public class Room {
+    public Room(String name, Integer minimumBid, List<Player> players) {
+        this.name = name;
+        this.players = players;
+        this.small_bid = minimumBid;
+    }
+
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
     @Column(name = "id", nullable = false)
     private Long id;
 
-    private String room_name;
+    @NotEmpty
+    private String name;
 
-    private Integer max_number_of_players;
+    @NotEmpty
+    private long small_bid;
+
+    @NotEmpty
+    @ManyToMany
+    private List<Player> players;
 
     private long step_sync;
 
     private long bank;
 
-    private long small_bid;
 
     private long blind_position;
-
-    @ManyToMany
-    private List<Player> players;
 
 
 }

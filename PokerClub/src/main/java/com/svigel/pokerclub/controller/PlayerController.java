@@ -5,7 +5,6 @@ import com.svigel.pokerclub.model.Player;
 import com.svigel.pokerclub.model.Race;
 import com.svigel.pokerclub.service.PlayerService;
 import com.svigel.pokerclub.validator.PlayerCreateValidator;
-import jakarta.persistence.JoinColumn;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.WebDataBinder;
@@ -20,7 +19,7 @@ public class PlayerController {
     private final PlayerService playerService;
     private final PlayerCreateValidator playerCreateValidator;
 
-    @InitBinder("playerCreateValidator")
+    @InitBinder("player")
     public void PlayerBinder(WebDataBinder webDataBinder) {
         webDataBinder.addValidators(playerCreateValidator);
     }
@@ -35,6 +34,11 @@ public class PlayerController {
     @GetMapping("players")
     public List<Player> findAll() {
         return playerService.findAll();
+    }
+
+    @GetMapping("players/{id}")
+    public List<Player> findByPokerUserId(@PathVariable Long id) {
+        return playerService.findByPokerUserId(id);
     }
 
 

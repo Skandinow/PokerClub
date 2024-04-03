@@ -1,6 +1,7 @@
 package com.svigel.pokerclub.validator;
 
 import com.svigel.pokerclub.model.Player;
+import com.svigel.pokerclub.model.PokerUser;
 import com.svigel.pokerclub.service.PlayerService;
 import org.springframework.stereotype.Component;
 import org.springframework.validation.Errors;
@@ -23,7 +24,8 @@ public class PlayerCreateValidator implements Validator {
     public void validate(Object target, Errors errors) {
         if (!errors.hasErrors()) {
             Player player = (Player) target;
-            if (playerService.findByNameAndRaceAndId(player.getName(), player.getRace(), player.getId()) != null) {
+            PokerUser user = player.getUser();
+            if (playerService.findByNameAndRaceAndUser(player.getName(), player.getRace(), user) != null) {
                 errors.reject("invalid-name-and-race", "You can't create two similar players");
             }
         }

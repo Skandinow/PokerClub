@@ -1,36 +1,35 @@
 package com.svigel.pokerclub.service;
 
+import com.svigel.pokerclub.model.Player;
 import com.svigel.pokerclub.model.Room;
 import com.svigel.pokerclub.repository.RoomRepository;
-import org.springframework.beans.factory.annotation.Autowired;
+import com.svigel.pokerclub.web.RoomCreationRequest;
+import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 
 @Service
+@RequiredArgsConstructor
 public class RoomService {
 
-    private final RoomRepository repository;
-
-    @Autowired
-    public RoomService(RoomRepository repository) {
-        this.repository = repository;
-    }
+    private final RoomRepository roomRepository;
+    private final PlayerService playerService;
 
     public Room getRoom(Long roomId) {
-        return repository.findById(roomId).orElseThrow();
+        return roomRepository.findById(roomId).orElseThrow();
     }
 
-    public Room createRoom() {
-        Room room = new Room();
-        return repository.save(room);
+    public Room createRoom(RoomCreationRequest request) {
+        List<Player> players = request.getCharacters().stream().map((playerService::findById)).toList();
+        return roomRepository.save(new Room(request.getName(), request.getMinimumBid(), players));
     }
 
     public List<Room> getAllRooms() {
-        return repository.findAll();
+        return roomRepository.findAll();
     }
 
-//    public void enterRoom(Player player, Room room) {
-//        repository.addPlayer(player.getId(), room.getId());
-//    }
+    public Room findRoomByName(String name) {
+        return roomRepository.findByName(name);
+    }
 }

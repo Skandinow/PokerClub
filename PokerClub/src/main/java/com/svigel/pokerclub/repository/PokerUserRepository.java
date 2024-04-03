@@ -1,5 +1,6 @@
 package com.svigel.pokerclub.repository;
 
+import com.svigel.pokerclub.model.Player;
 import com.svigel.pokerclub.model.PokerUser;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
@@ -7,6 +8,7 @@ import org.springframework.stereotype.Repository;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Size;
+import java.util.List;
 
 @Repository
 public interface PokerUserRepository extends JpaRepository<PokerUser, Long> {
@@ -14,5 +16,4 @@ public interface PokerUserRepository extends JpaRepository<PokerUser, Long> {
             message = "Expected Latin letters") String username, @NotEmpty @Size(min = 1, max = 20) String password);
 
     PokerUser findByUsername(String name);
-
 }

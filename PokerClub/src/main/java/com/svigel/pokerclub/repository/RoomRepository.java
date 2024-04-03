@@ -6,7 +6,5 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface RoomRepository extends JpaRepository<Room, Long> {
-
-//    @Query(value = "UPDATE room SET ")
-//    void addPlayer(Player player, Room room);
+    Room findByName(String name);
 }

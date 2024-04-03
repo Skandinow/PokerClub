@@ -11,6 +11,7 @@ import org.springframework.stereotype.Service;
 
 @Service
 public class JWTService {
+    //TODO убрать секрет в application.properties
     private static final String SECRET = "38c86b553adefeb3e579e39789e38664aef9176e";
     private static final Algorithm algorithm = Algorithm.HMAC256(SECRET);
     private static final JWTVerifier verifier = JWT.require(algorithm).build();
